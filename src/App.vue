@@ -30,6 +30,7 @@ export default {
   <main>
     <TheWelcome />
   </main>
+
 </template>
 
 <style scoped>

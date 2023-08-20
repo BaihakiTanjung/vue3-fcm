@@ -1,5 +1,6 @@
 <script>
 import { inject } from 'vue'
+import { usePush } from 'notivue'
 
 export default {
     //options api
@@ -10,14 +11,14 @@ export default {
     //composition api
     setup() {
         const messaging = inject('messaging')
+        // const push = usePush()
 
         console.log('Firebase cloud messaging object', messaging)
-
 
         messaging
             .getToken({
                 vapidKey:
-                    "Your Vapid Key",
+                    "BHNRgBUcCtWxBC-T3PMMvrqltP0QlwaiSIvVC2xTzA0ZqsqgZ9GpagxmgwEdDfTpdVxXvU29AqNsUR--GF-ELPY",
             })
             .then((currentToken) => {
                 if (currentToken) {
@@ -31,10 +32,21 @@ export default {
             .catch((err) => {
                 console.log("An error occurred while retrieving token. ", err);
             });
+
+
+
+
+
+        // return {
+        //     push
+        // }
     }
 }
 </script>
 
+
+
 <template>
     <h1>test fcm</h1>
+    <!-- <button @click="push.success('Something good has been pushed!')">Push</button> -->
 </template>

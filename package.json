@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "firebase": "^8.10.0",
+    "notivue": "^1.2.3",
     "vue": "^3.3.4"
   },
   "devDependencies": {
