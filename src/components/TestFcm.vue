@@ -1,5 +1,5 @@
 <script>
-import { inject } from 'vue'
+import { inject, ref } from 'vue'
 import { usePush } from 'notivue'
 
 export default {
@@ -11,6 +11,7 @@ export default {
     //composition api
     setup() {
         const messaging = inject('messaging')
+        const token = ref(null)
         // const push = usePush()
 
         console.log('Firebase cloud messaging object', messaging)
@@ -22,6 +23,7 @@ export default {
             })
             .then((currentToken) => {
                 if (currentToken) {
+                    token.value = currentToken
                     console.log("client token", currentToken);
                 } else {
                     console.log(
@@ -33,12 +35,22 @@ export default {
                 console.log("An error occurred while retrieving token. ", err);
             });
 
+        const copyToClipboard = async (value) => {
+
+            try {
+                await navigator.clipboard.writeText(value);
+                alert('Content copied to clipboard')
+            } catch (err) {
+                alert('Failed to copy: ', err);
+            }
+
+        }
 
 
-
-        // return {
-        //     push
-        // }
+        return {
+            token,
+            copyToClipboard
+        }
     }
 }
 </script>
@@ -47,6 +59,8 @@ export default {
 
 <template>
     <h1>test fcm</h1>
+    {{ token }}
+    <button @click="copyToClipboard(token)">Copy Token</button>
     <!-- <button @click="push.success('Something good has been pushed!')">Push</button> -->
     <a id="com.pusatgadaiindonesia.gaol" href="com.pusatgadaiindonesia.gaol://"> Open my app </a>
 </template>
