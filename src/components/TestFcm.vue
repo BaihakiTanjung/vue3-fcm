@@ -36,7 +36,6 @@ export default {
 
 
 
-
         // return {
         //     push
         // }
@@ -49,4 +48,5 @@ export default {
 <template>
     <h1>test fcm</h1>
     <!-- <button @click="push.success('Something good has been pushed!')">Push</button> -->
+    <a id="com.pusatgadaiindonesia.gaol" href="com.pusatgadaiindonesia.gaol://"> Open my app </a>
 </template>
